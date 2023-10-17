@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void decimalParaBinario(int num) {
+    // Armazenar o resultado binário em uma string
+    char resultado[33]; // assumindo que int é de 32 bits + terminador nulo
+    int indice = 0;
+
+    // Caso especial para zero
+    if (num == 0) {
+        resultado[indice++] = '0';
+        resultado[indice] = '\0';
+    } else {
+        while (num != 0) {
+            int resto = num % 2;
+            resultado[indice++] = resto + '0'; // converte para char
+            num /= 2;
+        }
+        resultado[indice] = '\0';
+
+        // Inverter a string para obter a representação binária correta
+        for (int i = 0; i < indice / 2; i++) {
+            char temp = resultado[i];
+            resultado[i] = resultado[indice - i - 1];
+            resultado[indice - i - 1] = temp;
+        }
+    }
+
+    printf("\nCorrespondente em binario: %s\n\n", resultado);
+}
+
+int main() {
+    int num;
+
+    printf("\nInforme um numero inteiro: ");
+    scanf("%d", &num);
+
+    decimalParaBinario(num);
+
+    system("pause");
+    return 0;
+}

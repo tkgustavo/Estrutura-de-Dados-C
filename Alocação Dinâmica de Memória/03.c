@@ -9,11 +9,17 @@ struct Veiculo {
 };
 
 struct Veiculo *alocarVeiculos(int n) {
+    if (n <= 0) {
+        printf("O tamanho do array de veículos deve ser maior que zero.\n");
+        exit(1);
+    }
+
     struct Veiculo *veiculos = (struct Veiculo *)malloc(n * sizeof(struct Veiculo));
     if (veiculos == NULL) {
         printf("Falha na alocação de memória.\n");
         exit(1);
     }
+
     return veiculos;
 }
 
@@ -22,6 +28,7 @@ void imprimirVeiculos(struct Veiculo *veiculos, int n) {
     for (int i = 0; i < n; i++) {
         printf("Chassi: %d, Marca: %s, Modelo: %s, Preço: %.2f\n", veiculos[i].numeroChassi, veiculos[i].marca, veiculos[i].modelo, veiculos[i].preco);
     }
+    printf("\n");
 }
 
 int main() {

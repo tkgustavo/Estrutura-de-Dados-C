@@ -2,11 +2,17 @@
 #include <stdlib.h>
 
 int *alocarArray(int n) {
+    if (n <= 0) {
+        printf("O tamanho do array deve ser maior que zero.\n");
+        exit(1);
+    }
+
     int *array = (int *)malloc(n * sizeof(int));
     if (array == NULL) {
         printf("Falha na alocação de memória.\n");
         exit(1);
     }
+
     return array;
 }
 
@@ -21,6 +27,7 @@ void imprimirArray(int *array, int n) {
     for (int i = 0; i < n; i++) {
         printf("%d ", array[i]);
     }
+    printf("\n");
 }
 
 int main() {
@@ -34,5 +41,6 @@ int main() {
     imprimirArray(array, n);
 
     free(array);
+
     return 0;
 }

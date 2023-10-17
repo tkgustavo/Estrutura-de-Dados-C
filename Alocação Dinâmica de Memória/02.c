@@ -8,11 +8,17 @@ struct Pessoa {
 };
 
 struct Pessoa *alocarPessoas(int n) {
+    if (n <= 0) {
+        printf("O número de pessoas deve ser maior que zero.\n");
+        exit(1);
+    }
+
     struct Pessoa *pessoas = (struct Pessoa *)calloc(n, sizeof(struct Pessoa));
     if (pessoas == NULL) {
         printf("Falha na alocação de memória.\n");
         exit(1);
     }
+
     return pessoas;
 }
 
@@ -21,6 +27,7 @@ void imprimirPessoas(struct Pessoa *pessoas, int n) {
     for (int i = 0; i < n; i++) {
         printf("CPF: %lld, Nome: %s, Salário: %.2f\n", pessoas[i].cpf, pessoas[i].nome, pessoas[i].salario);
     }
+    printf("\n");
 }
 
 int main() {
